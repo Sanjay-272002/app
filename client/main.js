@@ -15,9 +15,11 @@ function postAlienEncounter() {
             "city_name": city
         }),
         success: function (data) {
+            console.log("success");
             alert(data.message);
         },
         error: function (error) {
+            console.log("error");
             alert(error.message);
         }
     });
@@ -66,3 +68,96 @@ function hideLoader()
     $("#loader").hide();
     $("#result-container").show();
 }
+
+ //Define the file stream for file attachments
+
+//Create a config object with the email configuration
+function sendemail() {
+    // Fires an Ajax call to the URL defined in the index.js function file
+// All URLs to the Advanced I/O function will be of the pattern: /server/{function_name}/{url_path}   
+var city = $("#city-email-input").val();
+    alert(city);
+    console.log(city);
+    $.ajax({
+        url: "/server/alien_city_function/email", //If your Advanced I/O function is coded in the Java environment, replace the "alien_city_function" with "AlienCityAIO"
+        type: "post",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "city_name": city
+        }),
+        success: function (data) {
+            alert(data.message);
+        },
+        error: function (error) {
+            alert(error.message);
+        }
+    });
+    
+}
+
+function locate(){
+if(navigator.geolocation){//if browser supports the geolocation
+    navigator.geolocation.getCurrentPosition(onsuccesss,onerrorr);
+  }
+  else{
+    alert("Your browser not supports the geolocation");
+  }
+}
+
+function onsuccesss(position){
+    const{latitude, longitude} =position.coords;//getting latitude and longitude from coords
+     api=`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=331402349d907a2dd1e4c0e720d73044`;
+    fetchDataa();
+
+}
+function onerrorr(error){
+    alert(error.message)
+}
+let apikey='331402349d907a2dd1e4c0e720d73044';
+function fetchDataa(){
+    fetch(api).then(response => response.json()).then(result => weatherDetailss(result));
+};
+//getting details displayed 
+function weatherDetailss(info){
+    if(info.cod == "404"){
+        infoTxt.innerHTML=`${inputField.value} is not a valid city name`;
+    }
+    // else{
+    //     //getting required properties from console
+    //     const city = info.name;
+    //     const country=info.sys.country;
+    //     const {description, id}=info.weather[0];
+    //     const{feels_like,humidity,temp}=info.main;
+    //     const lati=info.coord.lat;
+    //     const longi=info.coord.lon;
+    //    if(id==800){
+    //       wIcon.src= "icons/clear.svg";
+    //    }else if(id>=200 && id<=232){
+    //     wIcon.src= "icons/storm.svg";
+    //  }else if(id>=600 && id<=622){
+    //     wIcon.src= "icons/snow.svg";
+    //  }else if(id>=701 && id<=781){
+    //     wIcon.src= "icons/haze.svg";
+    //  }else if(id>=801 && id<=804){
+    //     wIcon.src= "icons/cloud.svg";
+    //  }else if((id>=300 && id<=321)||(id>=500 && id<=531)){
+    //     wIcon.src= "icons/rain.svg";
+    //  }
+    //     //passing values into a html element
+      
+    //     wrapper.querySelector(".temp .numb").innerHTML=Math.floor(temp);
+    //     wrapper.querySelector(".weather").innerHTML=description;
+    //     wrapper.querySelector(".location span").innerHTML=`${city} , ${country}`;
+    //     wrapper.querySelector(".temp .numb-2").innerHTML=Math.floor(feels_like);
+    //     wrapper.querySelector(".humidity span").innerHTML=`${humidity}%`;
+    //     infoTxt.classList.remove("pending","error");
+    //     wrapper.classList.add("active");
+    //     countryL.innerHTML=lati+'N'+longi+'E'
+    // }
+    alert(`Hello you are in ${info.name}`);
+    console.log(info.city);
+    console.log(info);
+}
+
+  
+  

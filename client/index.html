@@ -7,6 +7,7 @@
     <title>AlientCityAppClient</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="weather.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -21,7 +22,9 @@
 </head>
 
 <body style="background: url(https://wallup.net/wp-content/uploads/2018/10/04/680001-alien-sci-fi-art-artwork-futuristic-aliens-748x561.jpg);
-background-repeat: no-repeat; background-size: cover;">
+background-repeat: no-repeat; background-size: cover;
+">
+    
     <br>
     <br>
     <center>
@@ -37,6 +40,10 @@ background-repeat: no-repeat; background-size: cover;">
                 <a class="nav-link" id="report-tab" data-toggle="tab" href="#report" role="tab" aria-controls="report"
                     aria-selected="false">Report Alien Encounter</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="report-tab" data-toggle="tab" href="#emer" role="tab" aria-controls="report"
+                    aria-selected="false">Ask Help</a>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="check" role="tabpanel" aria-labelledby="check-tab">
@@ -46,15 +53,17 @@ background-repeat: no-repeat; background-size: cover;">
                     <div class="form-group">
                         <label for="city-get-input" style="color:blue;"><b>Check if your city has aliens:</b></label>
                         <input type="text" class="form-control" id="city-get-input" aria-describedby="checkCity"
-                            placeholder="Enter City Name">
+                            placeholder="Enter City Name" style="width: 50%;">
                     </div>
                     <button type="submit" class="btn btn-primary"
                         onclick="getAlienEncounter();return false;">Check</button>
+                       
+                        
                 </form>
                 <br>
                 <br>
                 <div id="result-container">
-                    <div id="result-text">
+                    <div id="result-text" style="color: white;">
                     </div>
                     <br>
                     <div id="result-image">
@@ -74,14 +83,28 @@ background-repeat: no-repeat; background-size: cover;">
                         <div class="city-post-input">
                             <label for="exampleInputEmail1" style="color:blue;"><b>Enter the name of the city where you encountered an alien:</b></label>
                             <input type="text" class="form-control" id="city-post-input" aria-describedby="cityPost"
-                                placeholder="Enter City Name">
+                                placeholder="Enter City Name" style="width: 50%;">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary"
                         onclick="postAlienEncounter();return false;">Report</button>
+                        <button type="submit" class="btn btn-primary"
+                        onclick="locate();return false;">Check location</button>
                 </form>
             </div>
-        </div>
-    </div>
+            <div class="tab-pane fade" id="emer" role="tabpanel" aria-labelledby="report-tab">
+                <br>
+                <br>
+                <form>
+                    <div class="form-group">
+                        <label for="city-email-input" style="color:blue;"><b>Ask For Help:</b></label>
+                        <input type="text" class="form-control" id="city-email-input" aria-describedby="checkCity"
+                            placeholder="Enter City Name" style="width: 50%;">
+                    </div>
+                    <button type="submit" class="btn btn-primary"
+                        onclick="sendemail();return false;">send</button>
+                </form>
+            </div>
+        
 </body>
 </html>

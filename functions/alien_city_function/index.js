@@ -111,3 +111,26 @@ function sendErrorResponse(res) {
  });
 }
 module.exports = app;
+
+
+app.post('/email', (req, res) => {
+    var cityJson = req.body;
+    console.log(cityJson)
+    var catalystApp = catalyst.initialize(req);
+    let config = {
+    from_email: 'sanjainagaraaja@gmail.com', 
+    to_email: 'sanjaykumaranna799@gmail.com',  
+    html_mode: true,
+    subject: 'Greetings from Zylker Corp!',
+    content: `I have encountere alien in ${cityJson.city_name}.I need help.`
+};
+    let email = catalystApp.email();
+    let mailPromise = email.sendMail(config);
+    mailPromise.then((mailObject) => {
+        console.log(mailObject);
+    })
+	.catch((err) => {
+		console.log(err);
+	});
+
+   });

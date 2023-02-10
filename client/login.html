@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background: url(https://wallup.net/wp-content/uploads/2018/10/04/680001-alien-sci-fi-art-artwork-futuristic-aliens-748x561.jpg);
+background-repeat: no-repeat; background-size: cover;">
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/1.0.0/catalystWebSDK.js"></script>
+<script>
+	var cred = new catalystCredential();
+	cred.loadFromJSON({
+	    project_Id: "6245000000004069",
+	    zaid: "10053023417"
+        });
+	catalyst.initApp(cred, {});
+	catalyst.auth.signIn("login");
+</script>
+<h1 style="color:aliceblue; text-align: center;">Welcome TO Alien City App</h1>
+<br><br><br><br>
+<div id="login" style="height: 500px;width:300px;display: flex;
+align-items: center;
+justify-content: center;"></div>
+</body>
+</html>
